@@ -67,7 +67,7 @@ class WPDreamCarousel {
 
                 // Load plugin text domain
                 add_action( 'init', array( $this, 'load_plugin_textdomain' ) );
-
+                
                 // Create the custom post type
                 add_action( 'init', array( $this, 'register_carousel_post_type' ) );
 
@@ -81,6 +81,9 @@ class WPDreamCarousel {
                 /* Define custom functionality.
                  * Refer To http://codex.wordpress.org/Plugin_API#Hooks.2C_Actions_and_Filters
                  */
+                
+                add_action( 'tgmpa_register', array( $this, 'wpdc_register_required_plugins' ) );
+                
                 add_action( '@TODO', array( $this, 'action_method_name' ) );
                 add_filter( '@TODO', array( $this, 'filter_method_name' ) );
 
@@ -294,9 +297,22 @@ class WPDreamCarousel {
         public function action_method_name() {
                 // @TODO: Define your action hook callback here
         }
+        
+        public function wpdc_register_required_plugins() {
+	        $plugins = array(
+	        	array(
+	        		'name'		=> 'Piklist',
+	        		'slug'		=> 'piklist',
+	        		'required'	=> true,
+	        	)
+	        );
+	        
+	        $theme_text_domain = 'wp-dream-carousel';
+	        		 
+		    tgmpa( $plugins );
+        }
 
         public function register_carousel_post_type() {
-               $url = plugin_dir_url( 'wp-dream-carousel.php' );
                $labels = array(
                         'name'                => _x( 'Dream Carousels', 'Post Type General Name', 'wp-dream-carousel' ),
                         'singular_name'       => _x( 'Dream Carousel', 'Post Type Singular Name', 'wp-dream-carousel' ),
@@ -316,7 +332,7 @@ class WPDreamCarousel {
                         'label'               => __( 'wp_dream_carousel', 'wp-dream-carousel' ),
                         'description'         => __( 'A post containing the slides for the carousel slider.', 'wp-dream-carousel' ),
                         'labels'              => $labels,
-                        'supports'            => array( 'title', ),
+                        'supports'            => array( 'title', 'custom-fields' ),
                         'hierarchical'        => false,
                         'public'              => true,
                         'show_ui'             => true,

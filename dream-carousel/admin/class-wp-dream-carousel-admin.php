@@ -74,6 +74,8 @@ class WPDreamCarousel_Admin {
 		 */
 		add_action( '@TODO', array( $this, 'action_method_name' ) );
 		add_filter( '@TODO', array( $this, 'filter_method_name' ) );
+		
+		//add_action( 'add_meta_boxes', array( $this, 'add_carousel_meta_boxes' ) );
 
 	}
 
@@ -149,6 +151,17 @@ class WPDreamCarousel_Admin {
 			wp_enqueue_script( $this->plugin_slug . '-admin-script', plugins_url( 'assets/js/admin.js', __FILE__ ), array( 'jquery' ), WPDreamCarousel::VERSION );
 		}
 
+		wp_enqueue_media();
+
+        // Register, localize and enqueue our custom JS.
+        wp_register_script( 'tgm-nmp-media', plugins_url( 'assets/js/media.js', __FILE__ ), array( 'jquery' ), '1.0.0', true );
+        wp_localize_script( 'tgm-nmp-media', 'tgm_nmp_media',
+            array(
+                'title'     => __( 'Upload or Choose Your Custom Image File', 'tgm-nmp' ), // This will be used as the default title
+                'button'    => __( 'Insert Image into Input Field', 'tgm-nmp' )            // This will be used as the default button text
+            )
+        );
+        wp_enqueue_script( 'tgm-nmp-media' );
 	}
 
 	/**
@@ -199,9 +212,9 @@ class WPDreamCarousel_Admin {
 	public function add_action_links( $links ) {
 
 		return array_merge(
-			array(
+			/*array(
 				'settings' => '<a href="' . admin_url( 'options-general.php?page=' . $this->plugin_slug ) . '">' . __( 'Settings', $this->plugin_slug ) . '</a>'
-			),
+			),*/
 			$links
 		);
 
@@ -219,6 +232,43 @@ class WPDreamCarousel_Admin {
 	public function action_method_name() {
 		// @TODO: Define your action hook callback here
 	}
+	
+	/*public function add_carousel_meta_boxes() {
+
+        // This metabox will only be loaded for pages.
+        add_meta_box( 'wpdc-slides', __( 'Slideshow Contents', 'wp-dream-carousel' ), array( $this, 'render_carousel_metabox' ), 'wp_dream_carousel', 'normal', 'high' );
+
+    }
+	
+	public function render_carousel_metabox( $post ) {
+
+		$meta = get_post_meta( $post->ID, 'wpdc-slides', true );
+		
+		$i=0;
+		echo
+	    '<div id="slide-container">
+		    <ul class="slider-data custom_repeatable">
+			    <li class="slider_li" id="wpdc-slider-details_' . $i . '" style="border: 1px solid black; padding: 5px;">
+			        <span id="handle" style="max-width: 15%; float: left; display: block;">
+			            <span class="sort hndle" style="text-align: center; vertical-align: sub; display: block;">|||</span>
+			        </span>
+			        <span style="max-width: 70%; float: left; display: block;">
+			            <img id="wpdc-image-preview" src="" />
+			            <a href="#" class="tgm-open-media button button-primary" title="' . esc_attr__( "Click Here to Upload or Choose an Image", "wp-dream-carousel" ) . '">' . __( "Click Here to Upload or Choose an Image", "wp-dream-carousel" ) . '</a>
+			            <input type="hidden" id="tgm-new-media-image" size="70" value="" name="wpdc-slide' . $i . '"/>
+			            <a id="clear-all" style="display: none;" href="#">Remove Image</a>
+			        </span>
+			        <span style="display: block;">
+			            <a class="repeatable-remove button" style="float: right; display: block;" href="#">-</a>
+			        </span>
+			        <span style="clear: both; display: block;"></span>
+			    </li>
+			</ul>
+		</div>
+		<a class="repeatable-add button" style="float: right; margin-right: 5px;" href="#">+</a>
+		<div style="clear: both;"></div>';
+	
+    }*/
 
 	/**
 	 * NOTE:     Filters are points of execution in which WordPress modifies data

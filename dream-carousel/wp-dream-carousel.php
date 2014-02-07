@@ -11,6 +11,7 @@
  * Plugin Name:       WP Dream Carousel
  * Plugin URI:        http://wpdreamcarousel.com
  * Description:       A Carousel Plugin for WordPress using the ElastiSlide jQuery Plugin
+ * Plugin Type: Piklist
  * Version:           1.0.0
  * Author:            J. Isaac Friend
  * Author URI:        http://jisaacfriend.com
@@ -31,6 +32,8 @@ if ( ! defined( 'WPINC' ) ) {
  *----------------------------------------------------------------------------*/
 
 require_once( plugin_dir_path( __FILE__ ) . 'public/class-wp-dream-carousel.php' );
+
+require_once( plugin_dir_path( __FILE__ ) . 'public/class-tgm-plugin-activation.php' );
 
 /*
  * Register hooks that are fired when the plugin is activated or deactivated.
