@@ -1,48 +1,53 @@
 <?php
 /*
-Title: Slide Info
+Title: Slideshow
+Post Type: wp_dream_carousel
 Order: 0
 */
-  piklist('field', array(
-    'type' => 'group'
-    ,'field' => 'product_reviews'
+/*
+piklist( 'field', array(
+	'type'			=> 'group',
+	'field'			=> 'slides_info',
+	'add_more'		=> true,
+	'label'			=> 'Slide Images',
+	'description'	=> 'Add the slides for the slideshow.  You can add as many slides as you want, and they can be drag-and-dropped into the order that you would like them to appear.',
+	'fields'		=> array(
+		array(
+		'type'			=> 'file',
+		'field'			=> 'slide_image',
+		'scope'			=> 'post_meta',
+		'label'			=> __( 'Add/Edit Image', 'wp-dream-carousel' ),
+		'description'	=> __( 'Use the media uploader to add, select, or edit an image to use as a slide.', 'wp-dream-carousel' ),
+		'options'		=> array(
+			'modal_title'	=> __( 'Add/Edit Image', 'wp-dream-carousel' ),
+			'button'		=> __( 'Add/Edit', 'wp-dream-carousel' )
+			)
+		),
+		
+		array(
+		'type'			=> 'text',
+		'field'			=> 'slide_url',
+		'scope'			=> 'slide_image',
+		'label'			=> 'Image Link URL',
+		'description'	=> 'If the slide should have a link, enter the URL for the link here.'
+		),
+	),
+	'on_post_status' => array(
+		'value' => 'lock'
+	)
+));
+*/
+piklist('field', array(
+    'type' => 'file'
     ,'add_more' => true
-    ,'label' => 'Product Reviews'
-    ,'description' => 'Stores all of the data necessary for displaying the Product Reviews.  Images should only be 150px wide, but may be any height.  (Recommended 150x75)'
-    ,'fields' => array(
-      array(
-        'type' => 'text'
-        ,'field' => 'image_url'
-        ,'label' => 'Image URL'
-        ,'columns' => 12
-      )
-      ,array(
-        'type' => 'text'
-        ,'field' => 'review_title'
-        ,'label' => 'Review Title'
-        ,'columns' => 12
-      )
-      ,array(
-        'type' => 'text'
-        ,'field' => 'review_subtitle'
-        ,'label' => 'Review Subtitle'
-        ,'columns' => 12
-      )
-      ,array(
-        'type' => 'textarea'
-        ,'field' => 'review_excerpt'
-        ,'label' => 'Review Excerpt'
-        ,'columns' => 12
-      )
-      ,array(
-        'type' => 'text'
-        ,'field' => 'review_link'
-        ,'label' => 'Link to Full Review'
-        ,'columns' => 12
-      )
+    ,'field' => 'upload_media'
+    ,'scope' => 'post_meta'
+    ,'label' => __('Add File(s)','piklist')
+    ,'description' => __('This is the uploader seen in the admin by default.','piklist')
+    ,'options' => array(
+      'modal_title' => __('Add File(s)','piklist')
+      ,'button' => __('Add/Edit','piklist')
     )
-    ,'on_post_status' => array(
-        'value' => 'lock'
-      )
   ));
+
 ?>
