@@ -77,16 +77,15 @@ class WPDreamCarousel {
                 // Load public-facing style sheet and JavaScript.
                 add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_styles' ) );
                 add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_scripts' ) );
-
-                /* Define custom functionality.
-                 * Refer To http://codex.wordpress.org/Plugin_API#Hooks.2C_Actions_and_Filters
-                 */
-                
+          
                 add_action( 'tgmpa_register', array( $this, 'wpdc_register_required_plugins' ) );
                 
-                add_action( '@TODO', array( $this, 'action_method_name' ) );
-                add_filter( '@TODO', array( $this, 'filter_method_name' ) );
-
+                add_action( 'wp_footer', array( $this, 'wpdc_footer_scripts' ) );
+                
+                $options = get_option( 'wpdc_settings' );
+                if( '' != $options['image_width'] && '' != $options['image_height'] ) {
+                	add_image_size( 'carousel', $options['image_width'], $options['image_height'] );
+                }
         }
 
         /**
@@ -350,6 +349,77 @@ class WPDreamCarousel {
                 register_post_type( 'wp_dream_carousel', $args );
         }
 
+        public function wpdc_footer_scripts( $wpdc_slider ) {
+	        global $wpdc_slider;
+	        if( true === $wpdc_slider ) {
+		        $options = get_option( 'wpdc_settings' );
+		        $wpdc_footer_script = "
+		        	<script>
+				        $.Elastislide.defaults = {
+					    
+					    // orientation 'horizontal' || 'vertical'
+					    orientation : '" . $options[ 'orientation' ] . "',
+					 
+					    // sliding speed
+					    speed : " . $options[ 'speed' ] . ",
+					 
+					    // sliding easing
+					    easing : '" . $options[ 'easing' ] . "',
+					 
+					    // the minimum number of items to show.
+					    // when we resize the window, this will make sure minItems are always shown
+					    // (unless of course minItems is higher than the total number of elements)
+					    minItems : " . $options[ 'min_vis' ] . ",
+					 
+					    // index of the current item (left most item of the carousel)
+					    start : 0,
+						};
+					</script>
+					";
+				echo $wpdc_footer_script;
+	        } else {
+		        echo "<h1>NOT WORKING</h1>";
+	        }
+        }
+
+        public static function wp_dream_carousel( $id ) {
+	        $wpdc_slider = true;
+	        $slides = get_post_meta( $id, 'slides_info' );
+
+			$result = '<div class="wpdc-slider carousel-wrapper theme-default">';
+			$result .= '<ul id="carousel" class="elastislide-list">';
+			
+			foreach( $slides as $slide ) {
+				$count = count($slide['title']) - 1;
+				$i=0;
+				while( $i<=$count ) {
+					$the_title = sanitize_text_field( $slide['title'][$i] );
+					$the_link = esc_html( $slide['link'][$i] );
+					$the_link_target = sanitize_text_field( $slide['link_target'][$i] );
+					$the_url = wp_get_attachment_image_src( $slide['image'][$i], 'carousel' );
+					$result .= '<li><a href="' . $the_link;
+					if( "new" == $the_link_target ) {
+						$result .= '" target="_blank"';
+					} elseif( "modal" == $the_link_target ) {
+						$result .= '" class="thickbox"';
+					}
+					$result .= '"><img title="' . $the_title . '" src="' . $the_url[0] . '" data-thumb="' . $the_url[0] . '" /></a><br /><p class="slide-heading">' . $the_title . '</p></li>';
+					$i++;
+				}
+			}
+			
+			$result .= '</ul>';
+			$result .= '</div>';
+			echo $result;
+        }
+
+		/**
+		 * Create and add the shortcode used to display the slideshows
+		 *
+		 * @since    1.0.0
+		 */
+		//public function
+		
         /**
          * NOTE:  Filters are points of execution in which WordPress modifies data
          *        before saving it or sending it to the browser.
@@ -362,5 +432,4 @@ class WPDreamCarousel {
         public function filter_method_name() {
                 // @TODO: Define your filter hook callback here
         }
-
 }

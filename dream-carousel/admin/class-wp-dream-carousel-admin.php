@@ -60,11 +60,11 @@ class WPDreamCarousel_Admin {
 		add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_admin_scripts' ) );
 
 		// Add the options page and menu item.
-		add_action( 'admin_menu', array( $this, 'add_plugin_admin_menu' ) );
+		add_filter('piklist_admin_pages', array( $this, 'wpdc_plugin_settings_page' ) );
 
 		// Add an action link pointing to the options page.
-		$plugin_basename = plugin_basename( plugin_dir_path( __DIR__ ) . $this->plugin_slug . '.php' );
-		add_filter( 'plugin_action_links_' . $plugin_basename, array( $this, 'add_action_links' ) );
+		//$plugin_basename = plugin_basename( plugin_dir_path( __DIR__ ) . $this->plugin_slug . '.php' );
+		//add_filter( 'plugin_action_links_' . $plugin_basename, array( $this, 'add_action_links' ) );
 
 		/*
 		 * Define custom functionality.
@@ -160,7 +160,7 @@ class WPDreamCarousel_Admin {
 	 *
 	 * @since    1.0.0
 	 */
-	public function add_plugin_admin_menu() {
+	//public function add_plugin_admin_menu() {
 
 		/*
 		 * Add a settings page for this plugin to the Settings menu.
@@ -176,7 +176,7 @@ class WPDreamCarousel_Admin {
 		 * - Change 'manage_options' to the capability you see fit
 		 *   For reference: http://codex.wordpress.org/Roles_and_Capabilities
 		 */
-		$this->plugin_screen_hook_suffix = add_options_page(
+		/*$this->plugin_screen_hook_suffix = add_options_page(
 			__( 'Page Title', $this->plugin_slug ),
 			__( 'Menu Text', $this->plugin_slug ),
 			'manage_options',
@@ -184,15 +184,28 @@ class WPDreamCarousel_Admin {
 			array( $this, 'display_plugin_admin_page' )
 		);
 
-	}
+	}*/
 
 	/**
 	 * Render the settings page for this plugin.
 	 *
 	 * @since    1.0.0
 	 */
-	public function display_plugin_admin_page() {
-		include_once( 'views/admin.php' );
+	public function wpdc_plugin_settings_page($pages) {
+		$pages[] = array(
+			'page_title'     => __('Dream Carousel Settings'),
+			'menu_title'     => __('Settings', 'wp-dream-carousel'),
+			'sub_menu'       => 'edit.php?post_type=wp_dream_carousel',
+			'capability'     => 'manage_options',
+			'menu_slug'      => 'dream_carousel_settings',
+			'setting'        => 'wpdc_settings',
+			'menu_icon'      => plugins_url( 'assets/carousel.png', dirname( __FILE__ ) ),
+			'page_icon'      => plugins_url( 'assets/carousel.png', dirname( __FILE__ ) ),
+			'single_line'    => true,
+			'save_text'      => 'Save Settings'
+		);
+		
+		return $pages;
 	}
 
 	/**
@@ -203,9 +216,9 @@ class WPDreamCarousel_Admin {
 	public function add_action_links( $links ) {
 
 		return array_merge(
-			/*array(
+			array(
 				'settings' => '<a href="' . admin_url( 'options-general.php?page=' . $this->plugin_slug ) . '">' . __( 'Settings', $this->plugin_slug ) . '</a>'
-			),*/
+			),
 			$links
 		);
 
@@ -236,5 +249,5 @@ class WPDreamCarousel_Admin {
 	public function filter_method_name() {
 		// @TODO: Define your filter hook callback here
 	}
-
+	
 }
