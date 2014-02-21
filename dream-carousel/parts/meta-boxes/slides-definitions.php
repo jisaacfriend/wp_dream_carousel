@@ -17,31 +17,24 @@ foreach( $images as $image ){
 
 $slides = get_post_meta( $id, 'slides_info' );
 
-$result = '<div class="wpdc-slider carousel-wrapper theme-default">';
-$result .= '<ul id="carousel" class="elastislide-list">';
-
 foreach( $slides as $slide ) {
 	$count = count($slide['title']) - 1;
 	$i=0;
 	while( $i<=$count ) {
-		$the_title = sanitize_text_field( $slide['title'][$i] );
 		$the_link = esc_html( $slide['link'][$i] );
 		$the_link_target = sanitize_text_field( $slide['link_target'][$i] );
-		$the_url = wp_get_attachment_image_src( $slide['image'][$i], 'carousel' );
-		$result .= '<li><a href="' . $the_link;
-		if( "new" == $the_link_target ) {
-			$result .= '" target="_blank"';
-		} elseif( "modal" == $the_link_target ) {
-			$result .= '" class="thickbox"';
+		echo $the_link . "<br />";
+		if( "modal" == $the_link_target ) {
+			$string = "watch?v=";
+			if( strpos( $the_link, $string ) !== false ) {
+				$the_link = preg_replace("/(watch\\?v=)/u", "v/", $the_link);
+				var_dump( $the_link );
+				echo "<br />";
+			}
 		}
-		$result .= '"><img title="' . $the_title . '" src="' . $the_url[0] . '" data-thumb="' . $the_url[0] . '" /></a><br /><p class="slide-heading">' . $the_title . '</p></li>';
 		$i++;
 	}
 }
-
-$result .= '</ul>';
-$result .= '</div>';
-echo $result;
 
 piklist( 'field', array(
 	'type'         => 'group',

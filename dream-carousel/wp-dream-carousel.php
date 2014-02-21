@@ -35,6 +35,8 @@ require_once( plugin_dir_path( __FILE__ ) . 'public/class-wp-dream-carousel.php'
 
 require_once( plugin_dir_path( __FILE__ ) . 'public/class-tgm-plugin-activation.php' );
 
+require_once( plugin_dir_path( __FILE__ ) . 'public/views/public.php' );
+
 /*
  * Register hooks that are fired when the plugin is activated or deactivated.
  * When the plugin is deleted, the uninstall.php file is loaded.

@@ -34,42 +34,15 @@ piklist('field', array(
 piklist('field', array(
 	'type'     => 'select',
 	'field'    => 'easing',
-	'value'    => 'inoutsine',
+	'value'    => 'ease-in-out',
 	'label'    => 'Slider Easing Type',
-	'help'     => 'Select what type of easing should be used for the slide transitions. CAUTION: Although all easing types are supported, some may not be great choices for a carousel slider.',
+	'help'     => 'Select what type of easing should be used for the slide transitions.',
 	'choices'  => array(
-		'linear'              => 'Linear',
-		'swing'               => 'Swing',
-		'easeInQuad'          => 'Ease In Quad',
-		'easeOutQuad'         => 'Ease Out Quad',
-		'easeInOutQuad'       => 'Ease In/Out Quad',
-		'easeInCubic'         => 'Ease In Cubic',
-		'easeOutCubic'        => 'Ease Out Cubic',
-		'easeInOutCubic'      => 'Ease In/Out Cubic',
-		'easeInQuart'         => 'Ease In Quart',
-		'easeOutQuart'        => 'Ease Out Quart',
-		'easeInOutQuart'      => 'Ease In/Out Quart',
-		'easeInQuint'         => 'Ease In Quint',
-		'easeOutQuint'        => 'Ease Out Quint',
-		'easeInOutQuint'      => 'Ease In/Out Quint',
-		'easeInExpo'          => 'Ease In Expo',
-		'easeOutExpo'         => 'Ease Out Expo',
-		'easeInOutExpo'       => 'Ease In/Out Expo',
-		'easeInSine'          => 'Ease In Sine',
-		'easeOutSine'         => 'Ease Out Sine',
-		'easeInOutSine'       => 'Ease In/Out Sine',
-		'easeInCirc'          => 'Ease In Circ',
-		'easeOutCirc'         => 'Ease Out Circ',
-		'easeInOutCirc'       => 'Ease In/Out Circ',
-		'easeInElastic'       => 'Ease In Elastic',
-		'easeOutElastic'      => 'Ease Out Elastic',
-		'easeInOutElastic'    => 'Ease In/Out Elastic',
-		'easeInBack'          => 'Ease In Back',
-		'easeOutBack'         => 'Ease Out Back',
-		'easeInOutBack'       => 'Ease In/Out Back',
-		'easeInBounce'        => 'Ease In Bounce',
-		'easeOutBounce'       => 'Ease Out Bounce',
-		'easeInOutBouce'      => 'Ease In/Out Bounce',
+		'ease'        => 'Standard Easing',
+		'linear'      => 'Linear Easing',
+		'ease-in'     => 'Slow Start',
+		'ease-out'    => 'Slow End',
+		'ease-in-out' => 'Slow Start/End'
 	)
 ));
 
@@ -78,15 +51,15 @@ piklist('field', array(
 piklist('field', array(
 	'type'     => 'select',
 	'field'    => 'min_vis',
-	'value'    => 'two',
+	'value'    => '2',
 	'label'    => 'Minimum Number of Visible Items',
 	'help'     => 'Select the minimum number of items that should be visible when the slider is displayed on the smallest screen size (usually 320px wide).',
 	'choices'  => array(
-		'one'     => '1',
-		'two'     => '2',
-		'three'   => '3',
-		'four'    => '4',
-		'five'    => '5'
+		'1'   => '1',
+		'2'   => '2',
+		'3'   => '3',
+		'4'   => '4',
+		'5'   => '5'
 	)
 ));
 
