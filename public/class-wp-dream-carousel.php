@@ -9,18 +9,6 @@
  * @copyright 2014 J. Isaac Friend
  */
 
-/**
- * Plugin class. This class should ideally be used to work with the
- * public-facing side of the WordPress site.
- *
- * If you're interested in introducing administrative or dashboard
- * functionality, then refer to `class-plugin-name-admin.php`
- *
- * @TODO: Rename this class to a proper name for your plugin.
- *
- * @package WP_Dream_Carousel
- * @author  J. Isaac Friend <j.isaac.friend@fueledbydreams.com>
- */
 class WPDreamCarousel {
 
         /**
@@ -33,15 +21,6 @@ class WPDreamCarousel {
         const VERSION = '1.0.0';
 
         /**
-         * @TODO - Rename "plugin-name" to the name your your plugin
-         *
-         * Unique identifier for your plugin.
-         *
-         *
-         * The variable name is used as the text domain when internationalizing strings
-         * of text. Its value should match the Text Domain file header in the main
-         * plugin file.
-         *
          * @since    1.0.0
          *
          * @var      string
@@ -239,7 +218,6 @@ class WPDreamCarousel {
          * @since    1.0.0
          */
         private static function single_activate() {
-                // @TODO: Define activation functionality here
         }
 
         /**
@@ -248,7 +226,6 @@ class WPDreamCarousel {
          * @since    1.0.0
          */
         private static function single_deactivate() {
-                // @TODO: Define deactivation functionality here
         }
 
         /**
@@ -299,7 +276,6 @@ class WPDreamCarousel {
          * @since    1.0.0
          */
         public function action_method_name() {
-                // @TODO: Define your action hook callback here
         }
         
         public function wpdc_register_required_plugins() {
@@ -354,30 +330,16 @@ class WPDreamCarousel {
                 register_post_type( 'wp_dream_carousel', $args );
         }
         
-        public function wpdc_add_shortcode( $atts ) {
-	        extract( shortcode_atts( array (
-	        	'id'	=> 'Please specify a slideshow ID by using id="X" with the shortcode!'
-	        ), $atts ));
-	        return wp_dream_carousel( $id );
-        }
 
 		/**
 		 * Create and add the shortcode used to display the slideshows
 		 *
 		 * @since    1.0.0
 		 */
-		//public function
-		
-        /**
-         * NOTE:  Filters are points of execution in which WordPress modifies data
-         *        before saving it or sending it to the browser.
-         *
-         *        Filters: http://codex.wordpress.org/Plugin_API#Filters
-         *        Reference:  http://codex.wordpress.org/Plugin_API/Filter_Reference
-         *
-         * @since    1.0.0
-         */
-        public function filter_method_name() {
-                // @TODO: Define your filter hook callback here
+        public function wpdc_add_shortcode( $atts ) {
+	        extract( shortcode_atts( array (
+	        	'id'	=> 'Please specify a slideshow ID by using id="X" with the shortcode!'
+	        ), $atts ));
+	        return wp_dream_carousel( $id );
         }
 }
