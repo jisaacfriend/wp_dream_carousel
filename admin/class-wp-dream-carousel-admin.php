@@ -197,3 +197,4 @@ class WPDreamCarousel_Admin {
 		);
 
 	}
+}
