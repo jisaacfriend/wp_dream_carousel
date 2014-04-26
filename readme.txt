@@ -51,6 +51,16 @@ From the Repository:
 6. Editing a Carousel - once images have been uploaded, slides can be defined and dragged/dropped into whatever order you would like them to display.
 
 
+== Changelog ==
+
+= 1.0.1b =
+*Replaced FancyBox modal implementation with Magnific Popup jQuery plugin
+*Added support for Vimeo video linking in modal windows
+
+= 1.0.0 =
+*Initial version/release of the plugin
+
+
 == Frequently Asked Questions ==
 
 = How do I build a carousel? =

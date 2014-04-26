@@ -250,7 +250,7 @@ class WPDreamCarousel {
          */
         public function enqueue_styles() {
                 wp_enqueue_style( $this->plugin_slug . '-plugin-styles', plugins_url( 'assets/css/public.css', __FILE__ ), array(), self::VERSION );
-                wp_enqueue_style( $this->plugin_slug . '-fancybox-styles', plugins_url( 'assets/css/jquery.fancybox.css', __FILE__ ), array() );
+                wp_enqueue_style( $this->plugin_slug . '-foundation-reveal-styles', plugins_url( 'assets/css/magnific-popup.css', __FILE__ ), array() );
         }
 
         /**
@@ -262,8 +262,7 @@ class WPDreamCarousel {
                 wp_enqueue_script( $this->plugin_slug . '-jquerypp-script', plugins_url( 'assets/js/jquerypp.custom.js', __FILE__ ), array( 'jquery' ) );
                 wp_enqueue_script( $this->plugin_slug . '-modernizr-script', plugins_url( 'assets/js/modernizr.custom.17475.js', __FILE__ ), array( 'jquery' ) );
                 wp_enqueue_script( $this->plugin_slug . '-elastislide-script', plugins_url( 'assets/js/jquery.elastislide.js', __FILE__ ), array( 'jquery' ) );
-                wp_enqueue_script( $this->plugin_slug . '-fancybox-script', plugins_url( 'assets/js/jquery.fancybox.js', __FILE__ ), array( 'jquery' ) );
-                wp_enqueue_script( $this->plugin_slug . '-fancybox-pack-script', plugins_url( 'assets/js/jquery.fancybox.pack.js', __FILE__ ), array( 'jquery' ) );
+                wp_enqueue_script( $this->plugin_slug . '-magnific-popup-script', plugins_url( 'assets/js/jquery.magnific-popup.min.js', __FILE__ ), array( 'jquery' ) );
         }
 
         /**
@@ -342,4 +341,4 @@ class WPDreamCarousel {
 	        ), $atts ));
 	        return wp_dream_carousel( $id );
         }
-}
+} //end class

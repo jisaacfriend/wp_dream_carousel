@@ -197,4 +197,4 @@ class WPDreamCarousel_Admin {
 		);
 
 	}
-}
+} //end class

@@ -62,5 +62,3 @@ piklist('field', array(
 		'5'   => '5'
 	)
 ));
-
-?>

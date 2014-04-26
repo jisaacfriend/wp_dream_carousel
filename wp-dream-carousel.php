@@ -12,7 +12,7 @@
  * Plugin URI:        http://wpdreamcarousel.com
  * Description:       A Carousel Plugin for WordPress using the ElastiSlide jQuery Plugin
  * Plugin Type: Piklist
- * Version:           1.0.0
+ * Version:           1.0.1b
  * Author:            J. Isaac Friend
  * Author URI:        http://jisaacfriend.com
  * Text Domain:       wp-dream-carousel

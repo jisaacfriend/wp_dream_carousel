@@ -11,29 +11,8 @@ $id = $post->ID;
 $images = get_post_meta( $id, 'upload_media' );
 $image_array = array();
 
-foreach( $images as $image ){
-	$image_array[$image] = get_the_title( $image );
-}
-
-$slides = get_post_meta( $id, 'slides_info' );
-
-foreach( $slides as $slide ) {
-	$count = count($slide['title']) - 1;
-	$i=0;
-	while( $i<=$count ) {
-		$the_link = esc_html( $slide['link'][$i] );
-		$the_link_target = sanitize_text_field( $slide['link_target'][$i] );
-		echo $the_link . "<br />";
-		if( "modal" == $the_link_target ) {
-			$string = "watch?v=";
-			if( strpos( $the_link, $string ) !== false ) {
-				$the_link = preg_replace("/(watch\\?v=)/u", "v/", $the_link);
-				var_dump( $the_link );
-				echo "<br />";
-			}
-		}
-		$i++;
-	}
+foreach ( $images as $image ) {
+	$image_array[ $image ] = get_the_title( $image );
 }
 
 piklist( 'field', array(
@@ -76,4 +55,3 @@ piklist( 'field', array(
 		)
 	)
 ));
-?>

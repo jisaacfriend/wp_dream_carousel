@@ -45,7 +45,7 @@
 	display: block;
 	list-style-type: none;
 	padding: 0;
-	margin: 0;
+	margin: 0 !important;
 	-webkit-backface-visibility: hidden;
 	-webkit-transform: translateX(0px);
 	-moz-transform: translateX(0px);

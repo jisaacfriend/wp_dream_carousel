@@ -28,5 +28,3 @@ piklist('field', array(
 		'class'       => 'text'
 		)
 ));
-
-?>
